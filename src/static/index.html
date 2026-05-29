@@ -22,6 +22,14 @@
             <span>Login</span>
           </button>
           <div id="user-info" class="hidden">
+            <button
+              id="manage-announcements-button"
+              class="icon-button"
+              aria-haspopup="dialog"
+              aria-controls="announcements-modal"
+            >
+              <span>Announcements</span>
+            </button>
             <span id="display-name"></span>
             <button id="logout-button">Logout</button>
           </div>
@@ -30,6 +38,24 @@
     </header>
 
     <main>
+      <section
+        id="announcements-panel"
+        class="announcements-panel hidden"
+        aria-label="School announcements"
+      >
+        <div class="announcements-panel-header">
+          <p class="section-kicker">School Updates</p>
+          <div>
+            <h3>Current announcements</h3>
+            <p>Important updates for students, families, and staff.</p>
+          </div>
+        </div>
+        <div id="announcements-feed" class="announcements-feed"></div>
+        <p id="announcements-empty-state" class="hidden announcement-empty-state">
+          There are no active announcements right now.
+        </p>
+      </section>
+
       <section id="activities-container">
         <div class="main-content-layout">
           <!-- Left Sidebar for Filters -->
@@ -94,10 +120,6 @@
       </section>
     </main>
 
-    <div class="announcement-banner">
-      📢 Activity registration is open until the end of the month. Don't lose your spot!
-    </div>
-
     <footer>
       <p>&copy; 2023 Mergington High School</p>
     </footer>
@@ -135,6 +157,83 @@
           <button type="submit">Login</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <div
+      id="announcements-modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="announcement-modal-title"
+    >
+      <div class="modal-content announcements-modal-content">
+        <span class="close-announcements-modal" aria-label="Close announcements manager"
+          >&times;</span
+        >
+        <div class="announcements-modal-shell">
+          <section class="announcement-library">
+            <div class="announcements-library-header">
+              <p class="section-kicker">Manage</p>
+              <div>
+                <h3 id="announcement-modal-title">Announcements</h3>
+                <p>Create, schedule, revise, and remove messages from one place.</p>
+              </div>
+            </div>
+            <div id="announcements-list" class="announcements-list"></div>
+          </section>
+
+          <section class="announcement-editor">
+            <div class="announcement-editor-header">
+              <p class="section-kicker">Editor</p>
+              <div>
+                <h3 id="announcement-editor-label">New announcement</h3>
+                <p>Expiration is required. Start time is optional.</p>
+              </div>
+            </div>
+            <form id="announcement-form" class="announcement-form">
+              <div class="form-group">
+                <label for="announcement-title">Title</label>
+                <input
+                  type="text"
+                  id="announcement-title"
+                  maxlength="120"
+                  required
+                  placeholder="Activity fair opens next week"
+                />
+              </div>
+              <div class="form-group">
+                <label for="announcement-message">Message</label>
+                <textarea
+                  id="announcement-message"
+                  rows="5"
+                  maxlength="500"
+                  required
+                  placeholder="Share the update, timing, and any action students should take."
+                ></textarea>
+              </div>
+              <div class="announcement-form-grid">
+                <div class="form-group">
+                  <label for="announcement-start-date">Start date</label>
+                  <input type="datetime-local" id="announcement-start-date" />
+                </div>
+                <div class="form-group">
+                  <label for="announcement-end-date">Expiration date</label>
+                  <input type="datetime-local" id="announcement-end-date" required />
+                </div>
+              </div>
+              <div class="announcement-form-actions">
+                <button type="submit" id="announcement-submit-button">
+                  Save announcement
+                </button>
+                <button type="button" id="announcement-cancel-button" class="secondary-button">
+                  Clear form
+                </button>
+              </div>
+            </form>
+            <div id="announcements-manager-message" class="hidden message"></div>
+          </section>
+        </div>
       </div>
     </div>
 
