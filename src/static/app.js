@@ -717,11 +717,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      resetAnnouncementForm();
       showAnnouncementsManagerMessage(
         isEditing ? "Announcement updated." : "Announcement created.",
         "success"
       );
-      resetAnnouncementForm();
       await refreshAnnouncements();
       await fetchManagedAnnouncements();
     } catch (error) {
