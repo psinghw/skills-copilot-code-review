@@ -659,10 +659,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
 
-          showAnnouncementsManagerMessage(result.message, "success");
           if (editingAnnouncementId === announcement.id) {
             resetAnnouncementForm();
           }
+          showAnnouncementsManagerMessage(result.message, "success");
           refreshAnnouncements();
           fetchManagedAnnouncements();
         } catch (error) {
